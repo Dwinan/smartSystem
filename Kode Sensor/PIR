@@ -1,0 +1,23 @@
+// Pin koneksi
+const int pirPin = 2;     // Pin digital dari sensor PIR
+const int ledPin = 13;    // Pin LED indikator
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("PIR Motion Sensor Activated");
+}
+
+void loop() {
+  int motionState = digitalRead(pirPin);
+
+  if (motionState == HIGH) {
+    Serial.println("⚠️ Motion Detected!");
+    digitalWrite(ledPin, HIGH); // Nyalakan LED
+  } else {
+    digitalWrite(ledPin, LOW); // Matikan LED
+  }
+
+  delay(500); // Delay untuk mencegah spam data
+}
